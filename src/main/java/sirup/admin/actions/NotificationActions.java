@@ -1,6 +1,8 @@
 package sirup.admin.actions;
 
 import com.google.gson.Gson;
+
+import sirup.admin.Env;
 import sirup.admin.clitool.CliSecureAction;
 import sirup.admin.clitool.CliSecureActionsClass;
 
@@ -46,7 +48,7 @@ public class NotificationActions {
         //System.out.println("Notifying " + invite.receiverId());
         NotificationObject no = new NotificationObject(type, message);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI("http://127.0.0.1:2104/api/v1/trigger"))
+                .uri(new URI(Env.NOTI_ADDRESS + ":" + Env.NOTI_PORT + "/api/v1/trigger"))
                 .setHeader("Content-Type","Application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(no)))
                 .build();

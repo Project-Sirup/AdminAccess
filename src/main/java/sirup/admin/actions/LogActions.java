@@ -74,7 +74,7 @@ public class LogActions {
             }
             catch (NumberFormatException ignored) {}
         }
-        int n = increment;
+        int n = Math.min(increment, list.size());;
         int s = 0;
         while (printMore) {
             printMore = printNLogs(s, n, list);

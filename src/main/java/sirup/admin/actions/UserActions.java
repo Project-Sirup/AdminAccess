@@ -1,5 +1,6 @@
 package sirup.admin.actions;
 
+import sirup.admin.Env;
 import sirup.admin.clitool.CliActionsClass;
 import sirup.admin.clitool.CliSecureAction;
 import sirup.admin.clitool.CliSecureActionsClass;
@@ -38,7 +39,7 @@ public class UserActions {
         }
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI("http://127.0.0.1:2103/api/v1/user"))
+                    .uri(new URI(Env.USER_ADDRESS + ":" + Env.USER_PORT + "/api/v1/user"))
                     .POST(HttpRequest.BodyPublishers.ofString(
                             "{userName:" + username +
                                     ", password: " + password1 +

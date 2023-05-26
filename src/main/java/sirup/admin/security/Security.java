@@ -5,6 +5,7 @@ import sirup.admin.clitool.CliActionsClass;
 import sirup.admin.clitool.CliSecureAction;
 import sirup.admin.clitool.CliSecureActionsClass;
 import sirup.service.auth.rpc.client.SystemAccess;
+import sirup.admin.Env;
 
 import java.io.Console;
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class Security {
                     .POST(HttpRequest.BodyPublishers.ofString(
                             "{userName:" + username +
                                     ", password:" + new String(password) + "}"))
-                    .uri(new URI("http://127.0.0.1:2103/api/v1/user/login"))
+                    .uri(new URI(Env.USER_ADDRESS +  ":" + Env.USER_PORT + "/api/v1/user/login"))
                     .build();
             HttpClient client = HttpClient.newBuilder().build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -70,6 +71,7 @@ public class Security {
             Security.token = res.data().token();
             Security.userId = res.data().user().userId();
         } catch (URISyntaxException | IOException | InterruptedException e) {
+            e.printStackTrace();
             return false;
         }
         Security.username = username;

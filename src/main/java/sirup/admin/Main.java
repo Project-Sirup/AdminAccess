@@ -8,9 +8,9 @@ import sirup.service.log.rpc.client.LogClient;
 
 public class Main {
     public static void main(String[] args) {
-        AuthClient.init("localhost",2101);
-        LogClient.init("localhost", 2102, "AdminFrontend");
-        DiagnosticsClient.init("localhost", 2105);
+        AuthClient.init(Env.AUTH_ADDRESS,Env.AUTH_PORT);
+        LogClient.init(Env.LOG_ADDRESS, Env.LOG_PORT, "AdminFrontend");
+        DiagnosticsClient.init(Env.DIAG_ADDRESS,Env.DIAG_PORT);
 
         new SirupCli("sirup.admin")
                 .addLoginHandler(Security::loginHandler)
