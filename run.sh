@@ -1,0 +1,1 @@
+java -jar ./target/SirupAdmin-1.0-SNAPSHOT-shaded.jar
